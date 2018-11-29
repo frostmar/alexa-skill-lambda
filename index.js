@@ -12,12 +12,12 @@ const GetHumidityHandler = {
         request.intent.name === 'GetHumidityIntent')
   },
   async handle (handlerInput) {
-    const humidity = await smartthings.getHumidity()
-    const speechOutput = 'The humidity is: ' + humidity + ' percent'
+    const { temp, humidity } = await smartthings.getHumidity()
+    const speechOutput = `The indoor temperature is ${temp} degrees, and humidity is ${humidity} percent`
 
     return handlerInput.responseBuilder
       .speak(speechOutput)
-      .withSimpleCard(SKILL_NAME, `Indoor humidity is ${humidity}%`)
+      .withSimpleCard(SKILL_NAME, `Indoor temperature ${temp}°C, humidity ${humidity}%`)
       .getResponse()
   }
 }

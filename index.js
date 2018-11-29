@@ -1,8 +1,26 @@
 /* eslint-disable  func-names */
 /* eslint-disable  no-console */
 
-const Alexa = require('ask-sdk')
+const Alexa = require('ask-sdk-core')
 const smartthings = require('smartthings.js')
+
+const GetTemperatureHandler = {
+  canHandle (handlerInput) {
+    const request = handlerInput.requestEnvelope.request
+    return request.type === 'LaunchRequest' ||
+      (request.type === 'IntentRequest' &&
+        request.intent.name === 'GetTemperatureIntent')
+  },
+  async handle (handlerInput) {
+    const { temp, humidity } = await smartthings.getTemperatureAndHumidity()
+    const speechOutput = `The indoor temperature is ${temp} degrees`
+
+    return handlerInput.responseBuilder
+      .speak(speechOutput)
+      .withSimpleCard('Temperature', `Indoor temperature ${temp}°C, humidity ${humidity}%`)
+      .getResponse()
+  }
+}
 
 const GetHumidityHandler = {
   canHandle (handlerInput) {
@@ -13,11 +31,29 @@ const GetHumidityHandler = {
   },
   async handle (handlerInput) {
     const { temp, humidity } = await smartthings.getTemperatureAndHumidity()
+    const speechOutput = `The indoor humidity is ${humidity} percent`
+
+    return handlerInput.responseBuilder
+      .speak(speechOutput)
+      .withSimpleCard('Humidity', `Indoor temperature ${temp}°C, humidity ${humidity}%`)
+      .getResponse()
+  }
+}
+
+const GetStatusHandler = {
+  canHandle (handlerInput) {
+    const request = handlerInput.requestEnvelope.request
+    return request.type === 'LaunchRequest' ||
+      (request.type === 'IntentRequest' &&
+        request.intent.name === 'GetStatusIntent')
+  },
+  async handle (handlerInput) {
+    const { temp, humidity } = await smartthings.getTemperatureAndHumidity()
     const speechOutput = `The indoor temperature is ${temp} degrees, and humidity is ${humidity} percent`
 
     return handlerInput.responseBuilder
       .speak(speechOutput)
-      .withSimpleCard(SKILL_NAME, `Indoor temperature ${temp}°C, humidity ${humidity}%`)
+      .withSimpleCard('House status', `Indoor temperature ${temp}°C, humidity ${humidity}%`)
       .getResponse()
   }
 }
@@ -76,16 +112,17 @@ const ErrorHandler = {
   }
 }
 
-const SKILL_NAME = 'House'
-const HELP_MESSAGE = 'You can say tell me the humidity, or, you can say exit... What can I help you with?'
+const HELP_MESSAGE = 'You can say tell me the temperature, humidity, or status; or you can say exit... What can I help you with?'
 const HELP_REPROMPT = 'What can I help you with?'
 const STOP_MESSAGE = 'Goodbye!'
 
-const skillBuilder = Alexa.SkillBuilders.standard()
+const skillBuilder = Alexa.SkillBuilders.custom()
 
 exports.handler = skillBuilder
   .addRequestHandlers(
+    GetTemperatureHandler,
     GetHumidityHandler,
+    GetStatusHandler,
     HelpHandler,
     ExitHandler,
     SessionEndedRequestHandler

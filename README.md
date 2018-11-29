@@ -3,6 +3,12 @@
 An Alexa skill which reads data from Samsung SmartThings (humidity sensor), implemented as an AWS Lambda.
 
 ## Deployment
+
+Use https://www.npmjs.com/package/node-lambda for convenience:  
+`npm install -g node-lambda`  
+`node-lambda package`
+
+Manual steps:
 1. install production dependencies: `npm i --production`
 2. zip all files
 3. create/edit an AWS lambda https://eu-west-1.console.aws.amazon.com/lambda/home upload the zip

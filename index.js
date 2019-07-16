@@ -2,7 +2,7 @@
 /* eslint-disable  no-console */
 
 const Alexa = require('ask-sdk-core')
-const smartthings = require('smartthings.js')
+const smartthings = require('./smartthings.js')
 
 const GetTemperatureHandler = {
   canHandle (handlerInput) {

@@ -1,6 +1,6 @@
 # alexa-aws-lambda
 
-An Alexa skill which reads data from Samsung SmartThings (humidity sensor), implemented as an AWS Lambda.
+An Alexa skill which reads data from Samsung SmartThings (temperature/humidity sensor), implemented as an AWS Lambda.
 
 ## Deployment
 

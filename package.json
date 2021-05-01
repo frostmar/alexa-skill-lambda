@@ -10,16 +10,17 @@
     "lint:fix": "standard --verbose --fix"
   },
   "dependencies": {
-    "ask-sdk-core": "^2.6.0",
-    "ask-sdk-model": "^1.18.0",
-    "request": "^2.88.0",
-    "request-promise-native": "^1.0.7"
+    "ask-sdk-core": "^2.10.2",
+    "ask-sdk-model": "^1.35.1",
+    "request": "^2.88.2",
+    "request-promise-native": "^1.0.9"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
+    "chai": "^4.3.4",
     "chai-as-promised": "^7.1.1",
-    "mocha": "^6.1.4",
-    "standard": "^13.0.2"
+    "mocha": "^8.3.2",
+    "nyc": "^15.1.0",
+    "standard": "^16.0.3"
   },
   "standard": {
     "env": "mocha"

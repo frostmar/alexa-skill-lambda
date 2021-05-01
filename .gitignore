@@ -1,6 +1,7 @@
+.vscode/
 build/
 node_modules/
+.lambda
 *.zip.env
 deploy.env
 event.json
-.lambda

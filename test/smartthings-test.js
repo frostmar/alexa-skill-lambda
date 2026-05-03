@@ -1,7 +1,8 @@
-const chai = require('chai')
-chai.use(require('chai-as-promised'))
+import * as chai from 'chai'
+import chaiAsPromised from 'chai-as-promised'
+import * as smartthings from '../smartthings.js'
+chai.use(chaiAsPromised)
 const expect = chai.expect
-const smartthings = require('../smartthings.js')
 
 describe('smartthings', function () {
   describe('getTemperatureAndHumidity', function () {

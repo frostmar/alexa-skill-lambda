@@ -1,6 +1,6 @@
 const request = require('request-promise-native')
 const smartthingsBaseUrl = 'https://api.smartthings.com/v1'
-const humidityDevId = 'a769b1ba-5888-41da-b431-2f80a7d2ac3f'
+const humidityDevId = 'e90a25e1-fe7a-4322-9659-042070b63a03'
 
 /**
  * Fetch smartthings humidity sensor reading

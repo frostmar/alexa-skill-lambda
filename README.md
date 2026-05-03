@@ -2,11 +2,13 @@
 
 An Alexa skill which reads data from Samsung SmartThings (temperature/humidity sensor), implemented as an AWS Lambda.
 
+Device ID read is hardcoded in smartthings.js, use https://my.smartthings.com/ to find an ID.
+
 ## Deployment
 
 Use https://www.npmjs.com/package/node-lambda for convenience:  
 `npm install -g node-lambda`  
-`node-lambda package`
+`node-lambda package --environment production`
 
 Alternative manual steps:
 1. install production dependencies: `npm i --production`
